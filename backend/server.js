@@ -1,0 +1,1 @@
+//server.js is the entry point for our application
