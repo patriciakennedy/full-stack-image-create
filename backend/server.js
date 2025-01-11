@@ -1,26 +1,29 @@
-// import express and create an express app
-// const express = require('express'); traditional way of importing
 
-// a modern syntax - es modules
-// in other to use it  add it in the package.json file like so
-// "type": "module",
+// Import express for creating the server
+// Import dotenv to load environment variables from a .env file
+// Import the function to connect to MongoDB
 import express from "express";
-import dotenv from "dotenv"; // mongoDB connection string lives in the .env file
+import dotenv from "dotenv"; 
+import { connectDB } from './config/db.js';
 
-// calls the express function to create an app instance
+// Load environment variables (e.g., database connection string)
+dotenv.config();
+
+// Create an Express application
 const app = express();
 
-// lets create a route ROTE
-app.get("/products", (req, res) => {
+// Route to check if the server is working
+app.get("/", (req, res) => {
   res.send("Server is ready");
 });
 
-// Create a ROUTE for all products in our database
-app.get('/products', (req, res) => {
-  res.send('Server is ready');
-});
+// Placeholder route to handle product-related requests (no response yet)
+app.get("/products", (req, res) => {});
 
+
+// Start the server and connect to MongoDB
 app.listen(5000, () => {
+  connectDB(); // Connect to the database
   console.log('server started at http://localhost:5000');
 });
 
